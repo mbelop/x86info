@@ -2,7 +2,7 @@ VERSION=1.31pre
 
 CFLAGS = -DVERSION="$(VERSION)"
 
-CFLAGS += -Wall -W -g -O2 -D_FORTIFY_SOURCE=2 -I. -Iinclude
+CFLAGS += -Wall -W -g -O2 -D_FORTIFY_SOURCE=2 -I. -Iinclude -I/usr/local/include
 ifneq ($(SYSROOT),)
 CFLAGS += --sysroot=$(SYSROOT)
 endif
@@ -22,7 +22,7 @@ CFLAGS += -Wwrite-strings
 # gcc specific
 ifneq ($(shell $(CC) -v 2>&1 | grep -c "clang"), 1)
 CFLAGS += -Wstrict-aliasing=3
-CFLAGS += -Wlogical-op
+#CFLAGS += -Wlogical-op
 endif
 
 # clang specific
@@ -34,7 +34,7 @@ CPP_MINOR := $(shell $(CPP) -dumpversion 2>&1 | cut -d'.' -f2)
 DEVEL   := $(shell grep VERSION Makefile | head -n1 | grep pre | wc -l)
 CFLAGS  += $(shell if [ $(CPP_MAJOR) -eq 4 -a $(CPP_MINOR) -ge 8 -a $(DEVEL) -eq 1 ] ; then echo "-Werror"; else echo ""; fi)
 
-LDFLAGS = -Wl,-z,relro,-z,now
+LDFLAGS = -Wl,-z,relro,-z,now -lz -L/usr/local/lib
 
 ifeq ($(CC),"")
 CC = gcc
