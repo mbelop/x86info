@@ -1,9 +1,5 @@
 #pragma once
 
-typedef unsigned char u8;
-typedef unsigned short u16;
-typedef unsigned int u32;
-
 enum vendor {
 	VENDOR_UNKNOWN = 0 ,
 	VENDOR_AMD,

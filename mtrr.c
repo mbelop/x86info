@@ -99,7 +99,7 @@ static void decode_mtrr_deftype(int cpu, int msr)
 {
 	unsigned long long val;
 	int ret;
-	u8 type;
+	uint8_t type;
 
 	ret = mtrr_value(cpu,msr,&val);
 	if (ret) {
@@ -120,7 +120,7 @@ static void decode_mtrr_physbase(int cpu, int msr)
 {
 	unsigned long long val;
 	int ret;
-	u8 type;
+	uint8_t type;
 
 	ret = mtrr_value(cpu, msr, &val);
 	if (ret) {
